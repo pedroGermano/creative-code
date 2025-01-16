@@ -1,0 +1,309 @@
+:root {
+  font-size: calc(100vw / 1920 * 10);
+  --gap: 3vw;
+  --yellow: #ffd600;
+  --blue: #01102d;
+  --sans: "Space Grotesk", sans-serif;
+  --title: "Pathway Gothic One", serif;
+}
+
+body {
+  font-family: var(--sans);
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  position: relative;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--yellow);
+  font-family: var(--sans);
+  margin: 0;
+  padding: 0;
+}
+
+video,
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+header.header {
+  position: fixed;
+  left: var(--gap);
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6rem;
+  border: 1px solid var(--yellow);
+  width: calc(100vw - (var(--gap) * 2));
+  z-index: 10;
+}
+
+.header__holder {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 3rem;
+}
+
+.logo {
+  width: 12.8rem;
+  display: flex;
+}
+
+ul.navigation {
+  display: flex;
+  gap: 1.9rem;
+  margin-right: 5rem;
+}
+
+.trigger {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  background-color: var(--yellow);
+  border: 1px solid var(--yellow);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  height: 2.9rem;
+  justify-content: center;
+  padding: 1rem;
+  right: 7rem;
+  top: 2.9rem;
+  width: 4.6rem;
+  z-index: 15;
+}
+
+.trigger:hover {
+  background-color: var(--blue);
+}
+
+.trigger:hover path {
+  stroke: white;
+}
+
+.hero {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+
+.hero__bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__texts {
+  position: absolute;
+  bottom: 7rem;
+  width: calc(100vw - (var(--gap) * 2));
+  margin-left: var(--gap);
+}
+
+ul.texts {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.7rem;
+}
+
+ul.hero__texts li {
+  font-size: 1.9rem;
+}
+
+.hero__texts h1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--title);
+  font-size: 15.2rem;
+  font-weight: 400;
+  letter-spacing: -1rem;
+  white-space: nowrap;
+}
+
+.menu-fs {
+  position: fixed;
+  width: 122.2rem;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 13;
+}
+
+.menu-fs__holder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  gap: 12rem;
+}
+
+ul.menu-fs__wipes {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+ul.menu-fs__wipes > * {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.wipe-yellow {
+  background-color: var(--yellow);
+}
+
+.wipe-blue {
+  background-color: var(--blue);
+}
+
+.wipe-white {
+  background-color: #fff;
+}
+
+.menu-fs__holder {
+  display: flex;
+}
+
+ul.menu-fs__nav {
+  position: relative;
+}
+
+.menu-fs__links {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-fs__holder {
+  padding: 12rem 10rem;
+}
+
+.menu-fs__links a {
+  color: var(--blue);
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+ul.menu-fs__nav {
+  margin-top: -1.7rem;
+}
+
+.menu-fs__nav li {
+  overflow: hidden;
+  position: relative;
+}
+
+.menu-fs__nav a {
+  display: block;
+  font-family: var(--title);
+  color: var(--blue);
+  font-size: 19.7rem;
+  margin-bottom: -9px;
+  line-height: 18rem;
+  -webkit-text-stroke: 0.2rem var(--blue);
+  letter-spacing: -0.7rem;
+}
+
+.wipe,
+.menu-fs__nav,
+.menu-fs__nav a,
+.menu-fs__links a {
+  will-change: transform;
+}
+
+.fader {
+  position: fixed;
+  z-index: 12;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100vw;
+  height: 100vh;
+}
+
+@media screen and (max-width: 479px) {
+  :root {
+    font-size: calc(100vw / 375 * 10);
+    --gap: 1rem;
+  }
+  body > * {
+    overflow: hidden;
+  }
+
+  .menu-fs {
+    width: 100vw;
+  }
+
+  .menu-fs__holder {
+    padding: 4.1rem 2.7rem;
+    gap: 0;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
+  ul.menu-fs__nav a {
+    font-size: 7.7rem;
+    line-height: 7rem;
+    letter-spacing: -0.4rem;
+    -webkit-text-stroke: 0.15rem var(--blue);
+  }
+
+  .menu-fs__links {
+    margin-top: 9vh;
+  }
+  header.header {
+    top: 1rem;
+  }
+  ul.navigation {
+    display: none;
+  }
+
+  .logo {
+    width: 11.2rem;
+  }
+  .header__holder {
+    padding: 1.2rem 1.6rem;
+  }
+
+  .trigger {
+    top: 1.9rem;
+    right: 1.9rem;
+  }
+
+  ul.texts li {
+    font-size: 1.3rem;
+  }
+  .hero__texts h1 {
+    font-size: 5.6rem;
+    letter-spacing: -0.3rem;
+  }
+}
