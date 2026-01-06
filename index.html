@@ -3,23 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Dev | Portfolio</title>
+    <title>Creative Dev | Full Stack & Design</title>
     <style>
-      /* --- CSS BASE & DESIGN SYSTEM --- */
+      :root {
+        --primary: #00ff41;
+        --bg: #050505;
+        --glass: rgba(255, 255, 255, 0.03);
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-      }
+        cursor: none;
+      } /* Cursor none para o custom cursor */
 
       body {
-        font-family: "Inter", sans-serif;
-        background-color: #050505;
-        color: #ffffff;
-        line-height: 1.6;
+        font-family: "Inter", -apple-system, sans-serif;
+        background-color: var(--bg);
+        color: #fff;
         overflow-x: hidden;
+        line-height: 1.6;
       }
 
+      /* --- Custom Cursor --- */
+      #custom-cursor {
+        width: 20px;
+        height: 20px;
+        border: 1px solid var(--primary);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 10000;
+        box-shadow: 0 0 15px var(--primary);
+        transition: transform 0.1s ease-out;
+      }
+
+      /* --- Background Canvas --- */
       #canvas-container {
         position: fixed;
         top: 0;
@@ -29,7 +49,7 @@
         height: 100vh;
       }
 
-      /* --- ANIMAÇÃO DE REVELAÇÃO (SCROLL) --- */
+      /* --- Scroll Reveal --- */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
@@ -40,7 +60,7 @@
         transform: translateY(0);
       }
 
-      /* --- NAVEGAÇÃO --- */
+      /* --- Hero Section --- */
       nav {
         position: fixed;
         width: 100%;
@@ -48,16 +68,14 @@
         display: flex;
         justify-content: space-between;
         z-index: 100;
-        backdrop-filter: blur(5px);
       }
       .logo {
+        font-family: monospace;
         font-weight: 900;
+        color: var(--primary);
         letter-spacing: -1px;
-        font-size: 1.2rem;
-        color: #00ff41;
       }
 
-      /* --- HERO SECTION --- */
       main {
         height: 100vh;
         display: flex;
@@ -65,34 +83,24 @@
         justify-content: center;
         padding: 0 10%;
       }
-
       h1 {
         font-size: clamp(3rem, 12vw, 7rem);
         line-height: 0.85;
         margin-bottom: 1.5rem;
-        position: relative;
-        /* Efeito Glitch */
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-          -0.025em -0.05em 0 rgba(0, 255, 0, 0.75);
+        text-shadow: 0.05em 0 0 #f00, -0.025em -0.05em 0 #0f0;
         animation: glitch 1s infinite;
       }
 
       @keyframes glitch {
-        0% {
+        0%,
+        100% {
           text-shadow: 0.05em 0 0 #f00, -0.05em -0.025em 0 #0f0;
         }
-        15% {
-          text-shadow: -0.05em -0.025em 0 #f00, 0.025em 0.025em 0 #0f0;
-        }
         50% {
-          text-shadow: 0.025em 0.05em 0 #f00, 0.05em 0 0 #0f0;
-        }
-        100% {
-          text-shadow: -0.025em 0 0 #f00, -0.025em -0.025em 0 #0f0;
+          text-shadow: -0.025em -0.05em 0 #f00, 0.05em 0.05em 0 #0f0;
         }
       }
 
-      /* --- BOTÃO INTERATIVO --- */
       .btn {
         position: relative;
         display: inline-block;
@@ -126,14 +134,9 @@
         top: 0;
       }
 
-      /* --- SKILLS (GLASSMORPHISM) --- */
+      /* --- Skills Section --- */
       .skills-section {
         padding: 100px 10%;
-      }
-      .skills-title {
-        font-family: monospace;
-        color: #00ff41;
-        margin-bottom: 2rem;
       }
       .skills-grid {
         display: grid;
@@ -141,32 +144,30 @@
         gap: 25px;
       }
       .skill-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: var(--glass);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 2.5rem;
         transition: 0.3s;
       }
       .skill-card:hover {
-        border-color: #00ff41;
+        border-color: var(--primary);
         transform: translateY(-5px);
       }
       .skill-icon {
-        color: #00ff41;
+        color: var(--primary);
         font-family: monospace;
-        display: block;
         margin-bottom: 1rem;
+        display: block;
       }
 
-      /* --- TERMINAL SECTION --- */
-      .terminal-section {
-        padding: 100px 10%;
-      }
+      /* --- Terminal Section --- */
       .terminal-window {
         background: #0a0a0a;
         border: 1px solid #333;
         border-radius: 6px;
         overflow: hidden;
+        margin: 50px 10%;
       }
       .terminal-header {
         background: #1a1a1a;
@@ -185,135 +186,119 @@
         color: #aaa;
       }
       .prompt {
-        color: #00ff41;
+        color: var(--primary);
       }
       .cursor {
         width: 8px;
         height: 15px;
-        background: #00ff41;
+        background: var(--primary);
         display: inline-block;
         animation: blink 1s infinite;
       }
-
       @keyframes blink {
         50% {
           opacity: 0;
         }
       }
 
-      /* --- FOOTER --- */
       footer {
         padding: 50px 10%;
         text-align: center;
         border-top: 1px solid #222;
       }
-      .status-bar {
-        color: #00ff41;
-        font-family: monospace;
-        font-size: 0.8rem;
-        margin-bottom: 2rem;
-      }
-      .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 2rem;
-      }
-      .social-links a {
-        color: #555;
-        text-decoration: none;
-        font-size: 0.8rem;
-        transition: 0.3s;
-      }
-      .social-links a:hover {
-        color: #00ff41;
-      }
     </style>
   </head>
   <body>
+    <div id="custom-cursor"></div>
     <div id="canvas-container"></div>
 
     <nav>
-      <div class="logo">CREATIVE_SYSTEM_V1</div>
-      <div class="status-bar">● SERVER_STABLE</div>
+      <div class="logo">TERMINAL_USER_01</div>
+      <div style="color: var(--primary); font-family: monospace">
+        ● SYSTEM_ACTIVE
+      </div>
     </nav>
 
     <main>
-      <h1>ALGORITHMIC<br />DESIGN.</h1>
-      <p style="color: #888; margin-bottom: 2rem; max-width: 500px">
-        Desenvolvedor focado em interfaces imersivas, otimização Linux e código
-        generativo.
+      <h1>CREATIVE<br />ENGINEER.</h1>
+      <p style="color: #888; margin-bottom: 2rem; max-width: 550px">
+        Especialista em unir a robustez do Linux com o impacto visual do
+        Creative Coding.
       </p>
-      <a href="#" class="btn">Initialize Project</a>
+      <a href="#" class="btn">Executar Projeto</a>
     </main>
 
     <section class="skills-section">
-      <h2 class="skills-title">> sudo apt-get install skills</h2>
+      <h2
+        style="
+          color: var(--primary);
+          font-family: monospace;
+          margin-bottom: 2rem;
+        "
+      >
+        > sudo list --capabilities
+      </h2>
       <div class="skills-grid">
         <div class="skill-card">
           <span class="skill-icon">[01]</span>
           <h3>DevOps & Linux</h3>
           <p>
-            Gerenciamento de servidores, Nginx e automação de infraestrutura
-            segura.
+            Infraestrutura escalável, servidores Nginx e automação em ambiente
+            Linux.
           </p>
         </div>
         <div class="skill-card">
           <span class="skill-icon">[02]</span>
-          <h3>Creative Code</h3>
-          <p>Experiências 3D com Three.js e shaders GLSL para web imersiva.</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">[03]</span>
-          <h3>Frontend Design</h3>
+          <h3>Three.js / WebGL</h3>
           <p>
-            UI/UX minimalista focado em performance e tipografia brutalista.
+            Criação de experiências 3D e Shaders aplicados ao design interativo.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="terminal-section">
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="dot" style="background: #ff5f56"></div>
-          <div class="dot" style="background: #ffbd2e"></div>
-          <div class="dot" style="background: #27c93f"></div>
-        </div>
-        <div class="terminal-body">
-          <p>
-            <span class="prompt">➜</span>
-            <span style="color: #fff">whoami</span>
-          </p>
-          <p>
-            Híbrido entre design e engenharia. Especialista em quebrar a
-            barreira entre o código funcional e a arte visual.
-          </p>
-          <p>
-            <span class="prompt">➜</span>
-            <span style="color: #fff">ls /vision</span>
-          </p>
-          <p>
-            Estabilidade. Beleza. Escalabilidade. <span class="cursor"></span>
-          </p>
-        </div>
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="dot" style="background: #ff5f56"></div>
+        <div class="dot" style="background: #ffbd2e"></div>
+        <div class="dot" style="background: #27c93f"></div>
       </div>
-    </section>
+      <div class="terminal-body">
+        <p>
+          <span class="prompt">➜</span>
+          <span style="color: #fff">cat about_me.log</span>
+        </p>
+        <p>
+          Trabalhando na interseção entre design visual e engenharia de
+          sistemas. Focado em alta performance e estética brutalista.
+          <span class="cursor"></span>
+        </p>
+      </div>
+    </div>
 
     <footer>
-      <div class="social-links">
-        <a href="#">GITHUB</a>
-        <a href="#">LINKEDIN</a>
-        <a href="#">EMAIL</a>
-      </div>
-      <p style="color: #333; font-size: 0.7rem; letter-spacing: 2px">
-        © 2026 // KERNEL_VERSION_6.x
+      <p style="color: #444; font-size: 0.8rem; letter-spacing: 2px">
+        © 2026 // DEPLOYED VIA NGINX ON LINUX
       </p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
     <script>
-      // --- THREE.JS CONFIG ---
+      // --- Custom Cursor ---
+      const cursor = document.getElementById("custom-cursor");
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX - 10 + "px";
+        cursor.style.top = e.clientY - 10 + "px";
+      });
+
+      // --- Three.js & Bloom Engine ---
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(
         75,
@@ -330,14 +315,24 @@
         .getElementById("canvas-container")
         .appendChild(renderer.domElement);
 
-      // Geometria (Torus Knot)
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+      const geometry = new THREE.IcosahedronGeometry(12, 1);
       const material = new THREE.MeshNormalMaterial({ wireframe: true });
       const shape = new THREE.Mesh(geometry, material);
       scene.add(shape);
-      camera.position.z = 30;
+      camera.position.z = 40;
 
-      // Scroll Tracking
+      // Post-Processing (Bloom)
+      const composer = new THREE.EffectComposer(renderer);
+      composer.addPass(new THREE.RenderPass(scene, camera));
+      const bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        1.5,
+        0.4,
+        0.85
+      );
+      composer.addPass(bloomPass);
+
+      // Scroll Logic
       let scrollPercent = 0;
       window.addEventListener("scroll", () => {
         scrollPercent =
@@ -346,21 +341,16 @@
           100;
       });
 
-      // Loop de Animação
       function animate() {
         requestAnimationFrame(animate);
         shape.rotation.x += 0.005;
         shape.rotation.y += 0.005;
-
-        // Efeito de Scroll no 3D
-        shape.position.z = -scrollPercent * 0.2;
-        shape.rotation.z = scrollPercent * 0.01;
-
-        renderer.render(scene, camera);
+        shape.position.z = -scrollPercent * 0.3;
+        composer.render();
       }
       animate();
 
-      // --- SCROLL REVEAL OBSERVER ---
+      // --- Intersection Observer for Scroll Reveals ---
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -371,17 +361,18 @@
       );
 
       document
-        .querySelectorAll("section, .skill-card, .terminal-window")
+        .querySelectorAll(".reveal, .skill-card, .terminal-window")
         .forEach((el) => {
           el.classList.add("reveal");
           observer.observe(el);
         });
 
-      // Responsividade
+      // Handle Resize
       window.addEventListener("resize", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
       });
     </script>
   </body>
